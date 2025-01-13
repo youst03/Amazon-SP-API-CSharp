@@ -185,6 +185,7 @@ namespace FikaAmazonAPI.AmazonSpApiSDK.Models.FulfillmentInbound
         /// </summary>
         /// <value>The date that the shipment will be ready to be picked up by the carrier. Must be in YYYY-MM-DD format.</value>
         [DataMember(Name = "FreightReadyDate", EmitDefaultValue = false)]
+        [JsonConverter(typeof(DateFormatConverter))]
         public DateTime? FreightReadyDate { get; set; }
 
         /// <summary>
@@ -219,6 +220,7 @@ namespace FikaAmazonAPI.AmazonSpApiSDK.Models.FulfillmentInbound
         /// </summary>
         /// <value>The estimated date that the shipment will be picked up by the carrier, in YYYY-MM-DD format.</value>
         [DataMember(Name = "PreviewPickupDate", EmitDefaultValue = false)]
+        [JsonConverter(typeof(DateFormatConverter))]
         public DateTime? PreviewPickupDate { get; set; }
 
         /// <summary>
@@ -226,6 +228,7 @@ namespace FikaAmazonAPI.AmazonSpApiSDK.Models.FulfillmentInbound
         /// </summary>
         /// <value>The estimated date that the shipment will be delivered to an Amazon fulfillment center, in YYYY-MM-DD format.</value>
         [DataMember(Name = "PreviewDeliveryDate", EmitDefaultValue = false)]
+        [JsonConverter(typeof(DateFormatConverter))]
         public DateTime? PreviewDeliveryDate { get; set; }
 
 
@@ -444,5 +447,6 @@ namespace FikaAmazonAPI.AmazonSpApiSDK.Models.FulfillmentInbound
             yield break;
         }
     }
+
 
 }

@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Runtime.Serialization;
 using System.Text;
 
@@ -111,6 +112,32 @@ namespace FikaAmazonAPI.AmazonSpApiSDK.Models.FulfillmentInbound
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
+        }
+    }
+
+    public class DateFormatConverter : JsonConverter<DateTime?>
+    {
+        public override void WriteJson(JsonWriter writer, DateTime? value, JsonSerializer serializer)
+        {
+            if (value.HasValue)
+            {
+                writer.WriteValue(value.Value.ToString("yyyy-MM-dd"));
+            }
+            else
+            {
+                writer.WriteNull();
+            }
+        }
+
+        public override DateTime? ReadJson(JsonReader reader, Type objectType, DateTime? existingValue, bool hasExistingValue, JsonSerializer serializer)
+        {
+            if (reader.Value == null)
+            {
+                return null;
+            }
+
+            string dateString = reader.Value.ToString();
+            return DateTime.ParseExact(dateString, "ddd MMM dd HH:mm:ss \"GMT\" yyyy", CultureInfo.InvariantCulture);
         }
     }
 

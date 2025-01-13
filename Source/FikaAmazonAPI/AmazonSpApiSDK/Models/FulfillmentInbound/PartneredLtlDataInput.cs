@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
+using static FikaAmazonAPI.AmazonSpApiSDK.Models.FulfillmentInbound.PutTransportDetailsRequest;
 
 namespace FikaAmazonAPI.AmazonSpApiSDK.Models.FulfillmentInbound
 {
@@ -69,6 +70,7 @@ namespace FikaAmazonAPI.AmazonSpApiSDK.Models.FulfillmentInbound
         /// </summary>
         /// <value>The date that the shipment will be ready to be picked up by the carrier.</value>
         [DataMember(Name = "FreightReadyDate", EmitDefaultValue = false)]
+        [JsonConverter(typeof(DateFormatConverter))]
         public DateTime? FreightReadyDate { get; set; }
 
         /// <summary>
