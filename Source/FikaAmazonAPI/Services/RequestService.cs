@@ -311,7 +311,7 @@ namespace FikaAmazonAPI.Services
             if (response.StatusCode == HttpStatusCode.BadRequest)
             {
                 throw new AmazonBadRequestException(
-                    "BadRequest see https://developer-docs.amazon.com/sp-api/changelog/api-request-validation-for-400-errors-with-html-response for advice",
+                    $"BadRequest {response.Content} ",
                     response);
             }
 
